@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
-            $table->string('name',55);
-            $table->string('email',55)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->text('password');
-            $table->string('avatar',55)->nullable();
-            $table->enum('role', ['Super Admin','Admin','Student']);
-            $table->rememberToken();
+        Schema::create('t_achievement', function (Blueprint $table) {
+            $table->bigIncrements('achievement_id')->unsigned();
+            $table->unsignedBigInteger('student_id');
+            $table->string('type',55);
+            $table->text('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
+            $table->foreign('student_id')->references('student_id')->on('t_student')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('t_achievement');
     }
 };

@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
+        Schema::create('t_extracurricular', function (Blueprint $table) {
+            $table->bigIncrements('extracurricular_id')->unsigned();
+            $table->unsignedBigInteger('teacher_id');
             $table->string('name',55);
-            $table->string('email',55)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->text('password');
-            $table->string('avatar',55)->nullable();
-            $table->enum('role', ['Super Admin','Admin','Student']);
-            $table->rememberToken();
+            $table->text('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
+            $table->foreign('teacher_id')->references('teacher_id')->on('t_teacher')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('t_extracurricular');
     }
 };

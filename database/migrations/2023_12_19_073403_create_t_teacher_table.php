@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
+        Schema::create('t_teacher', function (Blueprint $table) {
+            $table->bigIncrements('teacher_id')->unsigned();
+            $table->integer('nip');
+            $table->unsignedBigInteger('user_id');
             $table->string('name',55);
-            $table->string('email',55)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->text('password');
-            $table->string('avatar',55)->nullable();
-            $table->enum('role', ['Super Admin','Admin','Student']);
-            $table->rememberToken();
+            $table->string('gender',25);
+            $table->string('phone_number',25);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('t_teacher');
     }
 };
