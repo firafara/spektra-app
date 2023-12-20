@@ -11,18 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
-            $table->string('name',55);
-            $table->string('email',55)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->text('password');
-            $table->string('avatar',55)->nullable();
-            $table->enum('role', ['Super Admin','Admin','Student']);
-            $table->rememberToken();
+        Schema::create('t_major', function (Blueprint $table) {
+            $table->bigIncrements('major_id')->unsigned();
+            $table->string('major_name',55);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-
         });
     }
 
@@ -31,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('t_major');
     }
 };
