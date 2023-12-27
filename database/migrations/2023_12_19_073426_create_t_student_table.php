@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('t_student', function (Blueprint $table) {
             $table->bigIncrements('student_id')->unsigned();
             $table->unsignedBigInteger('user_id');
-            $table->string('nis',25);
+            $table->string('nis',25)->unique();
             $table->string('name',55);
             $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('major_id');
