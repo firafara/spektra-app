@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('t_class', function (Blueprint $table) {
             $table->bigIncrements('class_id')->unsigned();
+            $table->string('major_name',55);
+            $table->integer('grade',11);
             $table->string('class_name',55);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('nis',25)->unique();
             $table->string('name',55);
             $table->unsignedBigInteger('class_id');
-            $table->unsignedBigInteger('major_id');
             $table->string('gender',25);
             $table->string('phone_number',25);
             $table->date('birthdate')->nullable();
@@ -28,8 +27,6 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('class_id')->references('class_id')->on('t_class')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('major_id')->references('major_id')->on('t_major')->onDelete('cascade')->onUpdate('cascade');
-
         });
     }
 

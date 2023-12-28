@@ -35,11 +35,6 @@ class Student extends Model
         return $this->belongsTo(ClassModel::class, 'class_id', 'class_id');
     }
 
-    public function major()
-    {
-        return $this->belongsTo(Major::class, 'major_id', 'major_id');
-    }
-
     public function registrations()
     {
         return $this->hasMany(Registration::class, 'student_id', 'student_id');
