@@ -13,6 +13,8 @@ class ClassModel extends Model
     protected $primaryKey = 'class_id';
 
     protected $fillable = [
+        'major_name',
         'class_name',
+        'grade',
     ];
 }
