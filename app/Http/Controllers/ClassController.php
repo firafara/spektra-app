@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ClassModel;
 
 class ClassController extends Controller
 {
@@ -11,12 +12,10 @@ class ClassController extends Controller
      */
     public function index()
     {
-        //
+        $data = ClassModel::all();
+        return view('class.index',['data' => $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
