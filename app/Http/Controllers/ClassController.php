@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClassModel;
+use Illuminate\Support\Facades\DB;
+use Validator;
+use Yajra\DataTables\DataTables;
 
 class ClassController extends Controller
 {
@@ -12,23 +15,56 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $data = ClassModel::all();
-        return view('class.index',['data' => $data]);
+        return view('class.index');
     }
+    public function datatable(){
+        $data = DB::table('t_class')->get();
 
+        return Datatables::of($data)
+            ->addColumn('action', function($data){
+                $url_edit = url('class/edit/'.$data->class_id);
+                $url_delete = url('class/delete/'.$data->class_id);
+                $edit = "<a class='btn btn-warning btn-icon btn-sm' href='".$url_edit."' title='Edit'><i class='nav-icon fas fa-edit'></i></a>&nbsp;";
+                $delete = "<button class='btn btn-danger btn-icon btn-sm' data-url='".$url_delete."' onclick='deleteData(this)' title='Delete'><i class='nav-icon fas fa-trash'></i></button>";
+
+                return $edit.''.$delete;
+            })
+            ->editColumn('major_name',function($data){
+                return str_ireplace("\r\n", "," , $data->major_name);
+            })
+            ->editColumn('grade',function($data){
+                return str_ireplace("\r\n", "," , $data->grade);
+            })
+            ->editColumn('class_name',function($data){
+                return str_ireplace("\r\n", "," , $data->class_name);
+            })
+
+            ->rawColumns(['action'])
+            ->make(true);
+    }
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(Request $request){
+        $validator = Validator::make($request->all(),ClassModel::$createRules,ClassModel::$customMessage);
 
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+            $values = [
+                 'major_name'=>$request->major_name,
+                 'grade'=>$request->grade,
+                 'class_name'=>$request->class_name,
+            ];
+
+            $query = DB::table('t_class')->insert($values);
+            if( $query ){
+                return response()->json(['status'=>1, 'url'=>'/class','message'=>'Class Created Succesfully!']);
+            }
+        }
+    }
     /**
      * Display the specified resource.
      */

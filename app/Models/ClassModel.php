@@ -17,4 +17,22 @@ class ClassModel extends Model
         'class_name',
         'grade',
     ];
+
+    public static $createRules = [
+        'major_name' => 'required',
+        'grade' => 'required',
+        'class_name' => 'required',
+    ];
+
+    public static $customMessage = [
+        'major_name.required'=> 'Major cannot be empty!',
+        'grade.required'=> 'Grade cannot be empty!',
+        'class_name.required'=> 'Class cannot be empty!',
+    ];
+    public static $editRules = [
+        'major_name' => 'required',
+        'grade' => 'required',
+        'class_name' => 'required',
+
+    ];
 }
