@@ -34,4 +34,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static $createRules = [
+        'name' => 'required',
+        'email' => 'required|unique:users',
+        'password' => 'required',
+        'role' => 'required',
+        'avatar' => 'mimes:png,jpg,jpeg',
+    ];
+
+    public static $editRules = [
+        'email' => 'required',
+        'password' => 'required',
+        'role' => 'required',
+        'avatar' => 'mimes:png,jpg,jpeg',
+    ];
+
+    public static $customMessage = [
+        'name.required'=> 'User name cannot be empty!',
+        'email.required'=> 'Email cannot be empty!',
+        'email.unique'=> 'Email already exist!',
+        'password.required'=> 'Password cannot be empty!',
+        'role.required'=> 'User level cannot be empty!',
+        'avatar.mimes'=> 'Avatar format only jpg png!',
+    ];
 }
