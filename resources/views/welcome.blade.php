@@ -128,8 +128,8 @@
               SPEKTRA - MAN 1 KOTA PADANG
             </a>
             <div class="navbar-nav ml-auto">
-              <a class="nav-link" href="#">Log In</a>
-             <a class="nav-link" href="#">Register</a>
+              <a class="nav-link" href="{{url('login')}}">Log In</a>
+             <a class="nav-link" href="{{url('register')}}">Register</a>
             </div>
           </div>
         </nav>
