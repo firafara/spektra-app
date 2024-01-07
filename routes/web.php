@@ -29,12 +29,6 @@ Route::post('/loginProses',[AuthController::class,'loginProses']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/class/datatable',[App\Http\Controllers\ClassController::class, 'datatable'])->name('class/datatable');
-Route::get('/class',[App\Http\Controllers\ClassController::class, 'index']);
-Route::get('/class/edit/{class_id}',[App\Http\Controllers\ClassController::class, 'edit']);
-Route::post('/class/store',[App\Http\Controllers\ClassController::class, 'store'])->name('class/store');
-Route::post('/class/update/{class_id}', [App\Http\Controllers\ClassController::class, 'update'])->name('class/update');
-Route::any('/class/delete/{id}',[App\Http\Controllers\ClassController::class, 'destroy']);
 
 Route::get('/user/datatable',[App\Http\Controllers\UserController::class, 'datatable'])->name('user/datatable');
 Route::get('/user',[App\Http\Controllers\UserController::class, 'index']);
