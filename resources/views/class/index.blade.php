@@ -122,6 +122,7 @@
     <script src="{{ asset('/') }}assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('/') }}assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
     <script src="{{ asset('assets/js/form-validation.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         $(function() {
             $("#data-table").DataTable({
@@ -161,32 +162,31 @@
     </script>
     <script>
         function deleteData(dt) {
-            swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this item!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            type: 'DELETE',
-                            url: $(dt).data("url"),
-                            data: {
-                                "_token": "{{ csrf_token() }}"
-                            },
-                            success: function(response) {
-                                if (response.status) {
-                                    location.reload();
-                                }
-                            },
-                            error: function(response) {
-                                console.log(response);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this item!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: $(dt).data("url"),
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            if (response.status) {
+                                location.reload();
                             }
-                        });
-                    }
-                });
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        }
+                    });
+                }
+            });
             return false;
         }
     </script>

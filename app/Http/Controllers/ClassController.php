@@ -76,24 +76,34 @@ class ClassController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit($id){
+        $data = ClassModel::where('class_id',$id)->get();
+        return view('class/edit',['data'=>$data[0]]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
-        //
+        $validator = Validator::make($request->all(),ClassModel::$editRules,ClassModel::$customMessage);
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+            $data = ClassModel::find($id);
+            $data->update($request->all());
+            if( $data->update($request->all()) ){
+                return response()->json(['status'=>1, 'url'=>'/class','message'=>'Class Updated Succesfully!']);
+            }
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy($id){
+        $class = ClassModel::find($id);
+
+        if( $class->delete() ){
+            return response()->json(['status'=>1, 'url'=>'/class','message'=>'Class Deleted Succesfully!']);
+        }
     }
+
 }

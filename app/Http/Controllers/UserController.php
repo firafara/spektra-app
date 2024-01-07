@@ -24,7 +24,7 @@ class UserController extends Controller
 
             return Datatables::of($data)
             ->addColumn('action', function($data){
-                $url_view = url('user/'.$data->id);
+                $url_view = url('user/show/'.$data->id);
                 $url_edit = url('user/edit/'.$data->id);
                 $url_delete = url('user/delete/'.$data->id);
                 $view = "<a class='btn btn-primary btn-icon btn-sm' href='".$url_view."' title='View ".$data->name."'><i class='nav-icon fas fa-search'></i></a>&nbsp;";
@@ -85,32 +85,60 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show($id){
+        $data = DB::table('users')
+                ->where('users.id','=',$id)->get();
+        return view('user/view',['data'=>$data[0]]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit($id){
+        $data = User::where('id',$id)->get();
+        return view('user/edit',['data'=>$data[0]]);
+    }
+    public function update(Request $request,$id){
+
+        $data = User::find($id);
+        $password="";
+        if($request->password==0) $password = $data->password;
+        else if($request->password != 0 && ($request->password == $data->password) ) $password = $data->password;
+        else if($request->password != 0 && (bcrypt($request->password) != $data->password) ) $password = bcrypt($request->password);
+
+        $validator = Validator::make($request->all(),User::$editRules,User::$customMessage);
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+            $avatar="";
+            if($request->hasFile('avatar')){
+                $extensionavatar = $request->file('avatar')->getClientOriginalExtension();
+                $avatar = $data->name.'.'.$extensionavatar;
+
+                $ph = \CompressImage::make($request->avatar);
+                $ph->resize(600,400);
+                $ph->save(\public_path('/upload/avatar/'.$avatar));
+            }else $avatar=$data->avatar;
+
+            $values=[
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'password'=> $password,
+                'role'=>$request->role,
+                'avatar' => $avatar,
+            ];
+        }
+        if($data->update($values) ){
+            return response()->json(['status'=>1, 'url'=>'/user','message'=>'User Update Succesfully!']);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function destroy($id){
+        $user = User::find($id);
+
+        if( $user->delete() ){
+            return response()->json(['status'=>1, 'url'=>'/user','message'=>'User Deleted Succesfully!']);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
