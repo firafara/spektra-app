@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,8 @@ class UserController extends Controller
     {
         return view('user.index');
     }
+
+    
 
     public function datatable(){
             $data = DB::table('users')->get();
