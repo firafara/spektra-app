@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 Route::get('/register',[AuthController::class,'register']);
 Route::get('/login',[AuthController::class,'login']);
+Route::post('/loginProses',[AuthController::class,'loginProses']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
