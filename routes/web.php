@@ -44,3 +44,21 @@ Route::get('/user/edit/{id}',[App\Http\Controllers\UserController::class, 'edit'
 Route::post('/user/store',[App\Http\Controllers\UserController::class, 'store'])->name('user/store');
 Route::post('/user/update/{id}',[App\Http\Controllers\UserController::class, 'update'])->name('user/update');
 Route::any('/user/delete/{id}',[App\Http\Controllers\UserController::class, 'destroy']);
+
+Route::get('/student/datatable',[App\Http\Controllers\StudentController::class, 'datatable'])->name('student/datatable');
+Route::get('/student',[App\Http\Controllers\StudentController::class, 'index']);
+Route::get('/student/create', [App\Http\Controllers\StudentController::class, 'create'])->name('student/create');
+Route::get('/student/show/{id}',[App\Http\Controllers\StudentController::class, 'show']);
+Route::get('/student/edit/{id}',[App\Http\Controllers\StudentController::class, 'edit']);
+Route::post('/student/store',[App\Http\Controllers\StudentController::class, 'store'])->name('student/store');
+Route::post('/student/update/{id}',[App\Http\Controllers\StudentController::class, 'update'])->name('student/update');
+Route::any('/student/delete/{id}',[App\Http\Controllers\StudentController::class, 'destroy']);
+
+Route::get('/teacher/datatable',[App\Http\Controllers\TeacherController::class, 'datatable'])->name('teacher/datatable');
+Route::get('/teacher',[App\Http\Controllers\TeacherController::class, 'index']);
+Route::get('/teacher/create', [App\Http\Controllers\TeacherController::class, 'create'])->name('teacher/create');
+Route::get('/teacher/show/{id}',[App\Http\Controllers\TeacherController::class, 'show']);
+Route::get('/teacher/edit/{id}',[App\Http\Controllers\TeacherController::class, 'edit']);
+Route::post('/teacher/store',[App\Http\Controllers\TeacherController::class, 'store'])->name('teacher/store');
+Route::post('/teacher/update/{id}',[App\Http\Controllers\TeacherController::class, 'update'])->name('teacher/update');
+Route::any('/teacher/delete/{id}',[App\Http\Controllers\TeacherController::class, 'destroy']);
