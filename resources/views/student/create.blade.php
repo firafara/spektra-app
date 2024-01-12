@@ -50,22 +50,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="class_id"><b>Class</b><span class="text-danger">*</span></label>
-                                    <input type="hidden" id="class_id" name="class_id">
                                     <select name="class_id" id="class_id"
                                         class="form-control form-control-sm col-md-12 {{ $errors->has('class_id') ? 'is-invalid' : '' }}">
-                                        <option value="">Choose Class</option>
-                                        @if ($data)
-                                            <option value="{{ $data->class_id }}"
-                                                {{ old('class_id') == $data->class_id ? 'selected' : '' }}>
-                                                {{ $data->class_name }}
+                                        <option value="" selected>Choose Class</option>
+                                        @foreach ($class as $dt)
+                                            <option value="{{ $dt->class_id }}">
+                                                {{ $dt->class_details }}
                                             </option>
-                                        @endif
-                                        {{-- @foreach ($data as $dt)
-                                            <option value="{{ $dt->class_id }}"
-                                                {{ old('class_id') == $dt->class_id ? 'selected' : '' }}>
-                                                {{ $dt->class_name }}
-                                            </option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                     <span class="text-danger error-text class_id_error"></span>
                                 </div>
@@ -101,7 +93,16 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label for="birthplace"><b>Birthplace</b></label>
-                                            <textarea name="birthplace" id="birthplace" class="form-control form-control-sm"></textarea>
+                                            <input type="text" class="form-control form-control-sm" id="birthplace"
+                                                name="birthplace" value="{{ old('birthplace') }}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="address"><b>Address</b></label>
+                                            <textarea name="address" id="address" class="form-control form-control-sm"></textarea>
                                         </div>
                                     </div>
                                 </div>
