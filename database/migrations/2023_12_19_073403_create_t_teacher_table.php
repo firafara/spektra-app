@@ -15,7 +15,6 @@ return new class extends Migration
             $table->bigIncrements('teacher_id')->unsigned();
             $table->integer('nip')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->string('name',55);
             $table->string('gender',25);
             $table->string('phone_number',25);
             $table->timestamp('created_at')->useCurrent();

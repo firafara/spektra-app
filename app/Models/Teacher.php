@@ -15,10 +15,31 @@ class Teacher extends Model
     protected $fillable = [
         'nip',
         'user_id',
-        'name',
         'gender',
         'phone_number',
     ];
+    public static $createRules = [
+        'user_id' => 'required',
+        'nip' => 'required|unique:t_teacher',
+        'gender' => 'required',
+        'phone_number' => 'required',
+    ];
+
+    public static $editRules = [
+        'user_id' => 'required',
+        'nip' => 'required',
+        'gender' => 'required',
+        'phone_number' => 'required',
+    ];
+
+    public static $customMessage = [
+        'user_id.required'=> 'Name cannot be empty!',
+        'nip.required'=> 'nip cannot be empty!',
+        'nip.unique'=> 'nip already exist!',
+        'gender.required'=> 'gender cannot be empty!',
+        'phone_number.required'=> 'Phone number cannot be empty!',
+    ];
+
 
     public function user()
     {

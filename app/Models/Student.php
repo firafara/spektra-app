@@ -15,16 +15,37 @@ class Student extends Model
     protected $fillable = [
         'user_id',
         'nis',
-        'name',
         'class_id',
-        'major_id',
         'gender',
         'phone_number',
         'birthdate',
         'birthplace',
         'address',
     ];
+    public static $createRules = [
+        'user_id' => 'required',
+        'nis' => 'required|unique:t_student',
+        'class_id' => 'required',
+        'gender' => 'required',
+        'phone_number' => 'required',
+    ];
 
+    public static $editRules = [
+        'user_id' => 'required',
+        'nis' => 'required',
+        'class_id' => 'required',
+        'gender' => 'required',
+        'phone_number' => 'required',
+    ];
+
+    public static $customMessage = [
+        'user_id.required'=> 'Name cannot be empty!',
+        'nis.required'=> 'NIS cannot be empty!',
+        'nis.unique'=> 'NIS already exist!',
+        'class_id.required'=> 'Class cannot be empty!',
+        'gender.required'=> 'Gender cannot be empty!',
+        'phone_number.required'=> 'Phone number cannot be empty!',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
