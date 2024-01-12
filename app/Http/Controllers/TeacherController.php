@@ -96,7 +96,7 @@ class TeacherController extends Controller
         ->join('users', 't_teacher.user_id', '=', 'users.id')
         ->select('users.name', 't_teacher.*')
         ->where('teacher_id','=',$id)->first();
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->where('role','=','Admin')->get();
 
         return view('teacher/edit',['data'=>$data,'users'=>$users]);
     }

@@ -59,9 +59,9 @@
                                     <select name="class_id" id="class_id"
                                         class="form-control form-control-sm col-md-12 {{ $errors->has('class_id') ? 'is-invalid' : '' }}">
                                         <option value="">Choose Class</option>
-                                        @if ($data)
-                                            <option value="{{ $data->class_id }}" <?php echo $data->class_id == $data->class_id ? 'selected' : ''; ?>>
-                                                {{ $data->class_name }}
+                                        @if ($class)
+                                            <option value="{{ $class->class_id }}" <?php echo $class->class_id == $class->class_id ? 'selected' : ''; ?>>
+                                                {{ $class->class_details }}
                                             </option>
                                         @endif
                                     </select>
@@ -104,7 +104,16 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="birthplace"><b>Birthplace</b></label>
-                                            <textarea name="birthplace" id="birthplace" class="form-control form-control-sm">{{ $data->birthplace }}</textarea>
+                                            <input type="text" class="form-control form-control-sm" id="birthplace"
+                                                name="birthplace" value="{{ $data->birthplace }}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="address"><b>Address</b></label>
+                                            <textarea name="address" id="address" class="form-control form-control-sm">{{ $data->address }}</textarea>
                                         </div>
                                     </div>
                                 </div>
