@@ -26,45 +26,45 @@
                 Registrasi Akun
                 {{-- <small>Create your Color Admin Account. It’s free and always will be.</small> --}}
             </h1>
+
             <!-- end register-header -->
             <!-- begin register-content -->
             <div class="register-content">
-                <form action="index.html" method="GET" class="margin-bottom-0">
+                <form action="{{ url('/registerProses') }}" method="POST" class="margin-bottom-0">
+                    @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <label class="control-label">Nama Lengkap <span class="text-danger">*</span></label>
                     <div class="row row-space-10">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="Jhon Dae" required />
+                            <input type="text" name="name" class="form-control" placeholder="Jhon Dae" required />
                         </div>
-                       
                     </div>
                     <label class="control-label mt-2">Email <span class="text-danger">*</span></label>
                     <div class="row m-b-15">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="jhondae@gmail.com" required />
+                            <input type="text" name="email" class="form-control" placeholder="jhondae@gmail.com"
+                                required />
                         </div>
                     </div>
-
                     <label class="control-label">Password <span class="text-danger">*</span></label>
                     <div class="row m-b-15">
                         <div class="col-md-12">
-                            <input type="password" class="form-control" placeholder="Password" required />
+                            <input type="password" name="password" class="form-control" placeholder="Password" required />
                         </div>
                     </div>
-                    {{-- <div class="checkbox checkbox-css m-b-30">
-                        <div class="checkbox checkbox-css m-b-30">
-                            <input type="checkbox" id="agreement_checkbox" value="">
-                            <label for="agreement_checkbox">
-                                By clicking Sign Up, you agree to our <a href="javascript:;">Terms</a> and that you have
-                                read our <a href="javascript:;">Data Policy</a>, including our <a href="javascript:;">Cookie
-                                    Use</a>.
-                            </label>
-                        </div>
-                    </div> --}}
                     <div class="register-buttons">
                         <button type="submit" class="btn btn-primary btn-block btn-lg">Daftar</button>
                     </div>
                     <div class="m-t-30 m-b-30 p-b-30">
-                        Sudah Memiliki Akun? Klik <a href="{{url('login')}}">disini</a> untuk login.
+                        Sudah Memiliki Akun? Klik <a href="{{ url('login') }}">disini</a> untuk login.
                     </div>
                     <hr />
                     <p class="text-center mb-0">

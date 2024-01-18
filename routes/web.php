@@ -24,6 +24,8 @@ Route::get('/', function () {
 });
 
 Route::get('/register',[AuthController::class,'register']);
+Route::post('/registerProses',[AuthController::class,'registerProses']);
+
 Route::get('/login',[AuthController::class,'login']);
 Route::post('/loginProses',[AuthController::class,'loginProses']);
 
