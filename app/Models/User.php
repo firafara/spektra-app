@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -57,4 +58,27 @@ class User extends Authenticatable
         'role.required'=> 'User level cannot be empty!',
         'avatar.mimes'=> 'Avatar format only jpg png!',
     ];
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'user_id');
+
+    }
+
+    public function class()
+    {
+        return $this->hasOne(ClassModel::class, 'class_id');
+    }
+
+    public function extracurricular()
+    {
+        return $this->hasOne(Extracurricular::class, 'extracurricular_id', 'extracurricular_id');
+    }
+    
+    public function registration()
+    {
+        return $this->hasOne(Registration::class, 'user_id');
+    }
+
+    
 }

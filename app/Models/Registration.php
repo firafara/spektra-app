@@ -50,6 +50,11 @@ class Registration extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function registration()
+    {
+        return $this->hasOne(Registration::class, 'registration_id');
+    }
+
     public function extracurricular()
     {
         return $this->belongsTo(Extracurricular::class, 'extracurricular_id', 'extracurricular_id');
