@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Registration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -37,12 +38,21 @@ class RegistrationController extends Controller
     }
 
     public function datatable(){
+        // $data = "";
+        if(Auth()->user()->role != "Student" ){
         $data = DB::table('t_registration')
             ->join('users', 't_registration.user_id', '=', 'users.id')
             ->join('t_extracurricular', 't_registration.extracurricular_id', '=', 't_extracurricular.extracurricular_id')
             ->select('users.name', 't_registration.*','t_extracurricular.name as extra_name')
             ->get();
-
+        }else{
+            $data = DB::table('t_registration')
+            ->join('users', 't_registration.user_id', '=', 'users.id')
+            ->join('t_extracurricular', 't_registration.extracurricular_id', '=', 't_extracurricular.extracurricular_id')
+            ->select('users.name', 't_registration.*','t_extracurricular.name as extra_name')
+            ->where('users.id','=',Auth()->user()->id)
+            ->get(); 
+        }
         return Datatables::of($data)
             ->addColumn('action', function($data){
                 $url_view = url('registration/show/'.$data->registration_id);
@@ -80,14 +90,27 @@ class RegistrationController extends Controller
      */
     public function create()
     {
+        if(Auth()->user()->role != "Student" ){
           $data = DB::table('t_registration')
           ->join('users', 't_registration.user_id', '=', 'users.id')
           ->join('t_extracurricular', 't_registration.extracurricular_id', '=', 't_extracurricular.extracurricular_id')
           ->select('users.name', 't_registration.*')
-          ->first();
-  
+          ->get(); 
+
+          $users = DB::table('users')->where('role','=','Student')->get();
+          $extracurricular = DB::table('t_extracurricular')->get();
+        }else{
+            $data = DB::table('t_registration')
+          ->join('users', 't_registration.user_id', '=', 'users.id')
+          ->join('t_extracurricular', 't_registration.extracurricular_id', '=', 't_extracurricular.extracurricular_id')
+          ->select('users.name', 't_registration.*')
+          ->where('users.id','=',Auth()->user()->id)
+          ->get(); 
+
+          $users = DB::table('users')->where('id','=',Auth()->user()->id)->get();
+         
+        }
      
-      $users = DB::table('users')->where('role', '=', 'Student')->get();
       $extracurricular = DB::table('t_extracurricular')->get();
   
       return view('registration.create', ['data' => $data, 'users' => $users, 'extracurricular'=>$extracurricular]);
@@ -121,6 +144,8 @@ class RegistrationController extends Controller
                 'approval_letter' => $approvalLetterPath, // Store the file path in the database
                 'status' => $request->status,
             ];
+
+            $values['status'] = 'Pending';
     
             // Make sure the table name matches the one used in your database
             $query = DB::table('t_registration')->insert($values);
@@ -130,8 +155,6 @@ class RegistrationController extends Controller
             }
         }
     }
-    
-    
     
 
     public function show(string $id)

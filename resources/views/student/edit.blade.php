@@ -33,14 +33,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user_id"><b>Name</b><span class="text-danger">*</span></label>
-                                    <input type="hidden" id="user_id" name="user_id">
-                                    <select name="user_id" id="user_id"
-                                        class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
+                                    <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
+                                    <select name="user_id" id="user_id" class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
                                         <option value="">Choose Name</option>
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                            <option value="{{ $user->id }}" {{ old('user_id', $data->user_id) == $user->id ? 'selected' : '' }}>
                                                 {{ $user->name }}
                                             </option>
                                         @endforeach
@@ -61,7 +58,7 @@
                                         <option value="">Choose Class</option>
                                         @if ($data)
                                             <option value="{{ $data->class_id }}" <?php echo $data->class_id == $data->class_id ? 'selected' : ''; ?>>
-                                                {{ $data->class_name }}
+                                                {{ $data->class_details }}
                                             </option>
                                         @endif
                                     </select>
@@ -105,6 +102,14 @@
                                         <div class="form-group">
                                             <label for="birthplace"><b>Birthplace</b></label>
                                             <textarea name="birthplace" id="birthplace" class="form-control form-control-sm">{{ $data->birthplace }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="address"><b>Address</b></label>
+                                            <textarea name="address" id="address" class="form-control form-control-sm">{{ $data->address }}</textarea>
                                         </div>
                                     </div>
                                 </div>

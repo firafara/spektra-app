@@ -16,7 +16,7 @@
                                 @if (auth()->check() && auth()->user()->avatar)
                                     <img src="{{ asset('upload/avatar/' . auth()->user()->avatar) }}" alt="User Avatar" />
                                 @else
-                                    <img src="{{ asset('upload/avatar/default.jpg') }}" alt="Default Avatar" />
+                                    <img src="{{ asset('upload/avatar/default.png') }}" alt="Default Avatar" />
                                 @endif
                             </div>
 

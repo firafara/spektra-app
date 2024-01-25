@@ -15,6 +15,7 @@ class StudentController extends Controller
     public function index()
     {
         return view('student.index');
+        
     }
 
     public function datatable(){
@@ -99,12 +100,13 @@ class StudentController extends Controller
         $data = DB::table('t_student')
         ->join('users', 't_student.user_id', '=', 'users.id')
         ->join('t_class', 't_student.class_id', '=', 't_class.class_id')
-        ->select('t_student.*', 't_class.class_name')
+        ->select('t_student.*', DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'),'users.name')
         ->where('student_id','=',$id)->first();
         // dd($data);
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->where('role','=','Student')->get();
 
-        return view('student/edit',['data'=>$data,'users'=>$users]);
+        
+        return view('student/edit',['data'=>$data,'users'=>$users],);
     }
 
     public function update(Request $request,$id){

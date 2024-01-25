@@ -100,6 +100,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="address"><b>Address</b></label>
+                                            <textarea name="address" id="address" class="form-control form-control-sm"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>

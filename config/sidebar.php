@@ -57,20 +57,19 @@ return [
             'url' => '/dashboard',
         ],
         [
-            'icon' => 'fa fa-user',
-            'title' => 'Users',
-            'url' => 'javascript:;',
-            'caret' => true,
-            'sub_menu' => [
-                [
-                    'url' => '/student',
-                    'title' => 'Student',
-                ],
-                [
-                    'url' => '/user',
-                    'title' => 'User',
-                ],
-            ],
+            'icon' => 'fa fa-address-book',
+            'title' => 'Your Registration',
+            'url' => '/registration',
+        ],
+        [
+            'icon' => 'fa fa-address-book',
+            'url' => '/student',
+            'title' => 'Your Data Student',
+        ],
+        [
+            'icon' => 'fa fa-address-book',
+            'url' => '/user',
+            'title' => 'Your Data User',
         ],
     ],
 
