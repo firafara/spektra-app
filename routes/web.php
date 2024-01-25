@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
 use App\Http\Controllers;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+=======
+>>>>>>> hagi
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +25,7 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 
 Route::get('/register',[AuthController::class,'register']);
 Route::post('/registerProses',[AuthController::class,'registerProses']);

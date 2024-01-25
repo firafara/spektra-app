@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         return view('student.index');
-        
+
     }
 
     public function datatable(){
@@ -105,7 +108,7 @@ class StudentController extends Controller
         // dd($data);
         $users = DB::table('users')->where('role','=','Student')->get();
 
-        
+
         return view('student/edit',['data'=>$data,'users'=>$users],);
     }
 
