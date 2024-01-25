@@ -75,9 +75,6 @@ class RegistrationController extends Controller
             ->editColumn('registration_date',function($data){
                 return str_ireplace("\r\n", "," , $data->registration_date);
             })
-            ->editColumn('approval_letter',function($data){
-                return str_ireplace("\r\n", "," , $data->approval_letter);
-            })
             ->editColumn('status',function($data){
                 return str_ireplace("\r\n", "," , $data->status);
             })
@@ -111,10 +108,6 @@ class RegistrationController extends Controller
 
         }
 
-          ->first();
-
-
-      $users = DB::table('users')->where('role', '=', 'Student')->get();
       $extracurricular = DB::table('t_extracurricular')->get();
 
       return view('registration.create', ['data' => $data, 'users' => $users, 'extracurricular'=>$extracurricular]);

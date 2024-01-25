@@ -1,15 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
 use App\Http\Controllers;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-=======
->>>>>>> hagi
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +22,6 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
 
 Route::get('/register',[AuthController::class,'register']);
 Route::post('/registerProses',[AuthController::class,'registerProses']);
@@ -53,6 +49,8 @@ Route::get('/user/edit/{id}',[App\Http\Controllers\UserController::class, 'edit'
 Route::post('/user/store',[App\Http\Controllers\UserController::class, 'store'])->name('user/store');
 Route::post('/user/update/{id}',[App\Http\Controllers\UserController::class, 'update'])->name('user/update');
 Route::any('/user/delete/{id}',[App\Http\Controllers\UserController::class, 'destroy']);
+Route::get('users/profile/{id}',[App\Http\Controllers\UserController::class, 'profile'])->name('user.profile');
+Route::post('users/update/profile/{id}',[App\Http\Controllers\UserController::class, 'update_profile'])->name('user/update/profile');
 
 Route::get('/student/datatable',[App\Http\Controllers\StudentController::class, 'datatable'])->name('student/datatable');
 Route::get('/student',[App\Http\Controllers\StudentController::class, 'index']);

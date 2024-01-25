@@ -26,9 +26,11 @@
                             data-click="panel-expand"><i class="fa fa-expand"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning"
                             data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="{{ route('user/create') }}" class="btn btn-xs btn-icon btn-circle btn-green"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="Add New User"><i
-                                class="fa fa-plus"></i></a>
+                        @if (auth()->user()->role == 'Super Admin')
+                            <a href="{{ route('user/create') }}" class="btn btn-xs btn-icon btn-circle btn-green"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Add New User"><i
+                                    class="fa fa-plus"></i></a>
+                        @endif
                     </div>
                 </div>
                 <div class="panel-body">

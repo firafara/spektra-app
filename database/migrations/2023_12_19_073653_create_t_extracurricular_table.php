@@ -18,11 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-<<<<<<< HEAD
-=======
-
->>>>>>> hagi
-            $table->foreign('teacher_id')->references('teacher_id')->on('t_teacher')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

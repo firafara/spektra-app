@@ -26,7 +26,7 @@
                         <a href="{{ route('registration/create') }}" class="btn btn-xs btn-icon btn-circle btn-green"
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Add New Registration"><i
                                 class="fa fa-plus"></i></a>
-                                
+
                     </div>
                 </div>
                 <div class="panel-body">
@@ -36,7 +36,6 @@
                                 <th class="text-nowrap">User Name</th>
                                 <th class="text-nowrap">Extracurricular</th>
                                 <th class="text-nowrap">Registration Date</th>
-                                <th class="text-nowrap">Approval Letter</th>
                                 <th class="text-nowrap">Status</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
@@ -46,7 +45,6 @@
                                 <th class="text-nowrap">User Name</th>
                                 <th class="text-nowrap">Extracurricular</th>
                                 <th class="text-nowrap">Registration Date</th>
-                                <th class="text-nowrap">Approval Letter</th>
                                 <th class="text-nowrap">Status</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
@@ -57,7 +55,7 @@
             </div>
         </div>
     </div>
-   
+
 @endsection
 
 @push('scripts')
@@ -90,10 +88,6 @@
                         name: 'registration_date'
                     },
                     {
-                        data: 'approval_letter',
-                        name: 'approval_letter'             
-                    },
-                    {
                         data: 'status',
                         name: 'status'
                     },
@@ -105,9 +99,9 @@
                     }
                 ],
                 'columnDefs': [{
-                    "targets": 3, // your case first column
+                    "targets": 4, // your case first column
                     "className": "text-center",
-                    "width": "11%"
+                    "width": "12%"
                 }]
             });
         });

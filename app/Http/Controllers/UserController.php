@@ -18,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $data = User::all();
+        return view('user.index',['data'=>$data[0]]);
     }
 
     public function datatable(){
@@ -26,14 +27,22 @@ class UserController extends Controller
 
             return Datatables::of($data)
             ->addColumn('action', function($data){
-                $url_view = url('user/show/'.$data->id);
-                $url_edit = url('user/edit/'.$data->id);
-                $url_delete = url('user/delete/'.$data->id);
-                $view = "<a class='btn btn-primary btn-icon btn-sm' href='".$url_view."' title='View ".$data->name."'><i class='nav-icon fas fa-search'></i></a>&nbsp;";
-                $edit = "<a class='btn btn-warning btn-icon btn-sm' href='".$url_edit."' title='Edit'><i class='nav-icon fas fa-edit'></i></a>&nbsp;";
-                $delete = "<button class='btn btn-danger btn-icon btn-sm' data-url='".$url_delete."' onclick='deleteData(this)' title='Delete'><i class='nav-icon fas fa-trash'></i></button>";
+                if(auth()->user()->role == 'Super Admin') {
+                    $url_view = url('user/show/'.$data->id);
+                    $url_edit = url('user/edit/'.$data->id);
+                    $url_delete = url('user/delete/'.$data->id);
+                    $view = "<a class='btn btn-primary btn-icon btn-sm' href='".$url_view."' title='View ".$data->name."'><i class='nav-icon fas fa-search'></i></a>&nbsp;";
+                    $edit = "<a class='btn btn-warning btn-icon btn-sm' href='".$url_edit."' title='Edit'><i class='nav-icon fas fa-edit'></i></a>&nbsp;";
+                    $delete = "<button class='btn btn-danger btn-icon btn-sm' data-url='".$url_delete."' onclick='deleteData(this)' title='Delete'><i class='nav-icon fas fa-trash'></i></button>";
 
-                return $view."".$edit."".$delete;
+                    return $view."".$edit."".$delete;
+
+                }else{
+                    $url_view = url('user/show/'.$data->id);
+                    $view = "<a class='btn btn-primary btn-icon btn-sm' href='".$url_view."' title='View ".$data->name."'><i class='nav-icon fas fa-search'></i></a>&nbsp;";
+
+                    return $view;
+                }
             })
             ->editColumn('name',function($data){
                 return str_ireplace("\r\n", ",", $data->name);
@@ -99,51 +108,46 @@ class UserController extends Controller
         return view('user/edit',['data'=>$data[0]]);
     }
     public function update(Request $request, $id)
-{
-    $data = User::find($id);
+    {
+        $data = User::find($id);
 
-    $validator = Validator::make($request->all(), User::$editRules, User::$customMessage);
+        $validator = Validator::make($request->all(), User::$editRules, User::$customMessage);
 
-    if (!$validator->passes()) {
-        return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
-    }
-
-    // Check if a new avatar is uploaded
-    if ($request->hasFile('avatar')) {
-        // Delete the old avatar
-        if ($data->avatar) {
-            unlink(public_path('/upload/avatar/' . $data->avatar));
+        if (!$validator->passes()) {
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
 
-        // Save the new avatar
-        $extension = $request->file('avatar')->getClientOriginalExtension();
-        $avatar = $request->name . '.' . $extension;
-        $request->file('avatar')->move(public_path('/upload/avatar/'), $avatar);
+        // Check if a new avatar is uploaded
+        if ($request->hasFile('avatar')) {
+            // Delete the old avatar
+            if ($data->avatar) {
+                unlink(public_path('/upload/avatar/' . $data->avatar));
+            }
 
-        $data->avatar = $avatar;
+            // Save the new avatar
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            $avatar = $request->name . '.' . $extension;
+            $request->file('avatar')->move(public_path('/upload/avatar/'), $avatar);
+
+            $data->avatar = $avatar;
+        }
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->role = $request->role;
+
+        // Check if a password is provided
+        if ($request->filled('password')) {
+            $data->password = bcrypt($request->password);
+        }
+
+        // Save the changes
+        if ($data->save()) {
+            return response()->json(['status' => 1, 'url' => '/user', 'message' => 'User Updated Successfully!']);
+        } else {
+            return response()->json(['status' => 0, 'error' => 'Failed to update user.']);
+        }
     }
-
-    $data->name = $request->name;
-    $data->email = $request->email;
-    $data->role = $request->role;
-
-    // Check if a password is provided
-    if ($request->filled('password')) {
-        $data->password = bcrypt($request->password);
-    }
-
-    // Save the changes
-    if ($data->save()) {
-        return response()->json(['status' => 1, 'url' => '/user', 'message' => 'User Updated Successfully!']);
-    } else {
-        return response()->json(['status' => 0, 'error' => 'Failed to update user.']);
-    }
-}
-
-
-
-
-
 
     public function destroy($id){
         $user = User::find($id);
@@ -152,5 +156,53 @@ class UserController extends Controller
             return response()->json(['status'=>1, 'url'=>'/user','message'=>'User Deleted Succesfully!']);
         }
     }
+    public function profile($id){
+        $data = User::find($id);
 
+        if (!$data) {
+            return abort(404); // or handle it in a way that makes sense for your application
+        }
+
+        return view('user/profile', ['data' => $data]);
+    }
+        public function update_profile(Request $request,$id){
+        $data = User::find($id);
+
+        $validator = Validator::make($request->all(), User::$editRules, User::$customMessage);
+
+        if (!$validator->passes()) {
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+
+        // Check if a new avatar is uploaded
+        if ($request->hasFile('avatar')) {
+            // Delete the old avatar
+            if ($data->avatar) {
+                unlink(public_path('/upload/avatar/' . $data->avatar));
+            }
+
+            // Save the new avatar
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            $avatar = $request->name . '.' . $extension;
+            $request->file('avatar')->move(public_path('/upload/avatar/'), $avatar);
+
+            $data->avatar = $avatar;
+        }
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->role = $request->role;
+
+        // Check if a password is provided
+        if ($request->filled('password')) {
+            $data->password = bcrypt($request->password);
+        }
+
+        // Save the changes
+        if ($data->save()) {
+            return redirect()->back()->with('success', 'User Updated Successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update user.');
+        }
+    }
 }

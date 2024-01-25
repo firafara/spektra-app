@@ -103,16 +103,6 @@
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
         });
-        $(function() {
-            $("input[name='is_approve']").click(function() {
-                if ($("#is_approve_1").is(":checked")) {
-                    $("#user_signature").removeAttr("disabled");
-                    // $("#other_txt").focus();
-                } else {
-                    $("#user_signature").attr("disabled", "disabled");
-                }
-            });
-        });
     </script>
     <script>
         $(document).ready(function() {

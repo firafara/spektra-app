@@ -66,11 +66,6 @@ return [
             'url' => '/student',
             'title' => 'Your Data Student',
         ],
-        [
-            'icon' => 'fa fa-address-book',
-            'url' => '/user',
-            'title' => 'Your Data User',
-        ],
     ],
 
     // Add more roles as needed...

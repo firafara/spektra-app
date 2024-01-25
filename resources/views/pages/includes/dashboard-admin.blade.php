@@ -67,8 +67,11 @@
             <div class="panel panel-inverse" data-sortable-id="table-basic-1">
                 <div class="panel-heading ui-sortable-handle">
                     <h4 class="panel-title">Your Data</b></h4>
-                    <a href="" class="btn btn-primary btn-icon btn-sm" title="Edit"></a>
-
+                    <div>
+                        <a href="{{ route('user.profile', auth()->user()->id) }}" class="btn btn-warning" title="Edit">
+                            <i class="fas fa-pencil-alt fa-fw"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
