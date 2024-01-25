@@ -53,6 +53,10 @@
                         &copy; Color Admin All Right Reserved {{ date('Y') }}
                     </p>
                 </form>
+
+                @if (session('errorLogin'))
+                    <div class="alert alert-danger">{{ session('errorLogin') }}</div>
+                @endif
             </div>
             <!-- end login-content -->
         </div>

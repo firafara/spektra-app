@@ -46,7 +46,7 @@
                         <button type="submit" class="btn btn-success btn-block btn-lg">Masuk</button>
                     </div>
                     <div class="m-t-20 m-b-40 p-b-40 text-inverse">
-                        Belum memiliki akun? Klik <a href="{{ url('register') }}">disini</a> untuk register.
+                        Belum memiliki akun? Klik <a href="{{ url('register_v3.html') }}">disini</a> untuk register.
                     </div>
                     <hr />
                     <p class="text-center text-grey-darker mb-0">

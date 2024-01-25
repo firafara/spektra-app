@@ -12,8 +12,9 @@
     <h1 class="page-header"><small><b>Create Student</b></small></h1>
     <div class="row">
         <div class="col-xl-12 ui-sortable">
-            <form action="{{ route('student/store') }}" method="POST" id="main_form" enctype="multipart/form-data">
+            <form action="{{ route('student/store') }}" method="POST" id="main_form">
                 @csrf
+                @method('post')
                 <div class="panel panel-inverse">
                     <div class="panel-heading ui-sortable-handle">
                         <h4 class="panel-title">Student Create</h4>
@@ -50,12 +51,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="class_id"><b>Class</b><span class="text-danger">*</span></label>
+                                    <input type="hidden" id="class_id" name="class_id">
                                     <select name="class_id" id="class_id"
                                         class="form-control form-control-sm col-md-12 {{ $errors->has('class_id') ? 'is-invalid' : '' }}">
-                                        <option value="" selected>Choose Class</option>
-                                        @foreach ($class as $dt)
-                                            <option value="{{ $dt->class_id }}">
-                                                {{ $dt->class_details }}
+                                        <option value="">Choose Class</option>
+                                        @foreach ($classes as $class)
+                                            <option value="{{ $class->class_id }}"
+                                                {{ old('class_id') == $class->class_id ? 'selected' : '' }}>
+                                                {{ $class->class_details }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -93,16 +96,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label for="birthplace"><b>Birthplace</b></label>
-                                            <input type="text" class="form-control form-control-sm" id="birthplace"
-                                                name="birthplace" value="{{ old('birthplace') }}" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="address"><b>Address</b></label>
-                                            <textarea name="address" id="address" class="form-control form-control-sm"></textarea>
+                                            <textarea name="birthplace" id="birthplace" class="form-control form-control-sm"></textarea>
                                         </div>
                                     </div>
                                 </div>

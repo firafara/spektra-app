@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'superadmin',
             'email' => 'superadmin@gmail.com',
             'email_verified_at' =>now(),
-            'password' => bcrypt('qwerty123'),
+            'password' => bcrypt('12345678'),
             'avatar' => null,
             'role' => 'Super Admin',
 

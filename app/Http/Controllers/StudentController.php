@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Student;
-use App\Models\ClassModel;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Validator;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -45,14 +44,22 @@ class StudentController extends Controller
     }
 
     public function create(){
-        $data = Student::join('users','t_student.user_id','=','users.id')
-        ->join('t_class','t_student.class_id','=','t_class.class_id')->get(['t_student.*','t_class.class_id','t_class.class_name']);
+        $data = DB::table('t_student')
+            ->join('users', 't_student.user_id', '=', 'users.id')
+            ->join('t_class', 't_student.class_id', '=', 't_class.class_id')
+            ->select('t_student.*', 't_class.class_name')
+            ->first();
+
         $users = DB::table('users')->where('role','=','Student')->get();
-        $class = DB::table('t_class')->select('class_id', DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'))->get();
-        return view('student.create', ['data' => $data, 'users' => $users,'class' => $class]);
+        $class = DB::table('t_class')
+        ->select('t_class.class_id',DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'))
+        ->get();
+
+        return view('student.create', ['data' => $data, 'users' => $users, 'classes'=>$class]);
     }
 
     public function store(Request $request){
+
         $validator = Validator::make($request->all(),Student::$createRules,Student::$customMessage);
 
         if(!$validator->passes()){
@@ -95,9 +102,9 @@ class StudentController extends Controller
         ->select('t_student.*', 't_class.class_name')
         ->where('student_id','=',$id)->first();
         // dd($data);
-        $users = DB::table('users')->where('role','=','Student')->get();
-        $class = DB::table('t_class')->select('class_id', DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'))->first();
-        return view('student.edit', ['data' => $data, 'users' => $users,'class' => $class]);
+        $users = DB::table('users')->get();
+
+        return view('student/edit',['data'=>$data,'users'=>$users]);
     }
 
     public function update(Request $request,$id){

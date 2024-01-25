@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Validator;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
+use CompressImage;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -19,8 +20,6 @@ class UserController extends Controller
     {
         return view('user.index');
     }
-
-    
 
     public function datatable(){
             $data = DB::table('users')->get();
@@ -54,34 +53,32 @@ class UserController extends Controller
         return view('user/create',['data' => $data]);
     }
     public function store(Request $request){
-        $validator = Validator::make($request->all(),User::$createRules,User::$customMessage);
+        $validator = Validator::make($request->all(), User::$createRules, User::$customMessage);
 
-        if(!$validator->passes()){
+        if (!$validator->passes()) {
             return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
-        }else{
-            $avatarname="";
+        } else {
+            $avatarName = "";
 
-            if($request->hasFile('avatar')){
-                $extensionavatar = $request->file('avatar')->getClientOriginalExtension();
-                $avatarname = $request->name.'.'.$extensionavatar;
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $extension = $avatar->getClientOriginalExtension();
+                $avatarName = $request->name . '.' . $extension;
 
-                $ph = \CompressImage::make($request->avatar);
-                $ph->resize(600,400);
-                $ph->save(\public_path('/upload/avatar/'.$avatarname));
+                $avatar->move(public_path('upload/avatar/'), $avatarName);
             }
 
             $values = [
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'password'=> ($request->password == 0 ) ? bcrypt('mcp12345') : bcrypt($request->password),
-                'role'=>$request->role,
-                'avatar' => $avatarname,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => ($request->password == 0) ? bcrypt('mcp12345') : bcrypt($request->password),
+                'role' => $request->role,
+                'avatar' => $avatarName,
             ];
 
-            // $query = DB::table('users')->insert($values);//Dipake kalo ga ada proses lanjutan
             $query = User::create($values);
-            if( $query ){
-                return response()->json(['status'=>1, 'url'=>'/user','message'=>'User Created Succesfully!']);
+            if ($query) {
+                return response()->json(['status' => 1, 'url' => '/user', 'message' => 'User Created Successfully!']);
             }
         }
     }
@@ -101,40 +98,52 @@ class UserController extends Controller
         $data = User::where('id',$id)->get();
         return view('user/edit',['data'=>$data[0]]);
     }
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+{
+    $data = User::find($id);
 
-        $data = User::find($id);
-        $password="";
-        if($request->password==0) $password = $data->password;
-        else if($request->password != 0 && ($request->password == $data->password) ) $password = $data->password;
-        else if($request->password != 0 && (bcrypt($request->password) != $data->password) ) $password = bcrypt($request->password);
+    $validator = Validator::make($request->all(), User::$editRules, User::$customMessage);
 
-        $validator = Validator::make($request->all(),User::$editRules,User::$customMessage);
-        if(!$validator->passes()){
-            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
-        }else{
-            $avatar="";
-            if($request->hasFile('avatar')){
-                $extensionavatar = $request->file('avatar')->getClientOriginalExtension();
-                $avatar = $data->name.'.'.$extensionavatar;
-
-                $ph = \CompressImage::make($request->avatar);
-                $ph->resize(600,400);
-                $ph->save(\public_path('/upload/avatar/'.$avatar));
-            }else $avatar=$data->avatar;
-
-            $values=[
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'password'=> $password,
-                'role'=>$request->role,
-                'avatar' => $avatar,
-            ];
-        }
-        if($data->update($values) ){
-            return response()->json(['status'=>1, 'url'=>'/user','message'=>'User Update Succesfully!']);
-        }
+    if (!$validator->passes()) {
+        return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
     }
+
+    // Check if a new avatar is uploaded
+    if ($request->hasFile('avatar')) {
+        // Delete the old avatar
+        if ($data->avatar) {
+            unlink(public_path('/upload/avatar/' . $data->avatar));
+        }
+
+        // Save the new avatar
+        $extension = $request->file('avatar')->getClientOriginalExtension();
+        $avatar = $request->name . '.' . $extension;
+        $request->file('avatar')->move(public_path('/upload/avatar/'), $avatar);
+
+        $data->avatar = $avatar;
+    }
+
+    $data->name = $request->name;
+    $data->email = $request->email;
+    $data->role = $request->role;
+
+    // Check if a password is provided
+    if ($request->filled('password')) {
+        $data->password = bcrypt($request->password);
+    }
+
+    // Save the changes
+    if ($data->save()) {
+        return response()->json(['status' => 1, 'url' => '/user', 'message' => 'User Updated Successfully!']);
+    } else {
+        return response()->json(['status' => 0, 'error' => 'Failed to update user.']);
+    }
+}
+
+
+
+
+
 
     public function destroy($id){
         $user = User::find($id);

@@ -13,13 +13,32 @@ class Achievement extends Model
     protected $primaryKey = 'achievement_id';
 
     protected $fillable = [
-        'student_id',
+        'user_id',
         'type',
         'description',
     ];
 
-    public function student()
+    public static $createRules = [
+        'user_id' => 'required',
+        'type' => 'required',
+        'description' => 'required',
+    ];
+
+    public static $customMessage = [
+        'user_id.required'=> 'Major cannot be empty!',
+        'type.required'=> 'Grade cannot be empty!',
+        'description.required'=> 'Class cannot be empty!',
+    ];
+    public static $editRules = [
+        'user_id' => 'required',
+        'type' => 'required',
+        'description' => 'required',
+
+    ];
+
+    public function user()
     {
-        return $this->belongsTo(Student::class, 'student_id', 'student_id');
+        return $this->belongsTo(User::class);
     }
+
 }

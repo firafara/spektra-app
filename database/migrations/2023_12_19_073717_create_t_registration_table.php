@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('t_registration', function (Blueprint $table) {
             $table->bigIncrements('registration_id')->unsigned();
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('extracurricular_id');
             $table->date('registration_date');
             $table->text('approval_letter');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
-            $table->foreign('student_id')->references('student_id')->on('t_student')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('extracurricular_id')->references('extracurricular_id')->on('t_extracurricular')->onDelete('cascade')->onUpdate('cascade');
         });
     }

@@ -13,8 +13,14 @@
                         <a href="javascript:;" data-toggle="nav-profile">
                             <div class="cover with-shadow"></div>
                             <div class="image">
-                                <img src="/assets/img/user/user-13.jpg" alt="" />
+                                @if (auth()->check() && auth()->user()->avatar)
+                                    <img src="{{ asset('upload/avatar/' . auth()->user()->avatar) }}" alt="User Avatar" />
+                                @else
+                                    <img src="{{ asset('upload/avatar/default.jpg') }}" alt="Default Avatar" />
+                                @endif
                             </div>
+
+
                             <div class="info">
                                 {{ auth()->user()->name }}
                                 <small>{{ auth()->user()->email }}</small>
@@ -97,7 +103,15 @@
                     return $subMenu;
                 }
 
-                foreach (config('sidebar.menu') as $key => $menu) {
+                $userRole = auth()->check() ? auth()->user()->role : null;
+                $menuConfig = [];
+                if ($userRole == 'Super Admin' || $userRole == 'Admin') {
+                    $menuConfig = config('sidebar.default');
+                } elseif ($userRole == 'Student') {
+                    $menuConfig = config('sidebar.student');
+                }
+
+                foreach ($menuConfig as $key => $menu) {
                     $GLOBALS['parent_active'] = '';
 
                     $hasSub = !empty($menu['sub_menu']) ? 'has-sub' : '';

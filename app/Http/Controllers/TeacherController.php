@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Teacher;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Validator;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
 {
@@ -67,8 +67,8 @@ class TeacherController extends Controller
             return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
         }else{
             $values = [
-                'user_id'=>$request->user_id,
                 'nip'=>$request->nip,
+                'user_id'=>$request->user_id,
                 'gender'=>$request->gender,
                 'phone_number'=>$request->phone_number,
             ];
@@ -79,6 +79,7 @@ class TeacherController extends Controller
                 return response()->json(['status'=>1, 'url'=>'/teacher','message'=>'Teacher Created Succesfully!']);
             }
         }
+
     }
     public function show($id){
         $data = DB::table('t_teacher')
@@ -96,7 +97,7 @@ class TeacherController extends Controller
         ->join('users', 't_teacher.user_id', '=', 'users.id')
         ->select('users.name', 't_teacher.*')
         ->where('teacher_id','=',$id)->first();
-        $users = DB::table('users')->where('role','=','Admin')->get();
+        $users = DB::table('users')->get();
 
         return view('teacher/edit',['data'=>$data,'users'=>$users]);
     }

@@ -25,9 +25,12 @@ Route::get('/', function () {
 
 Route::get('/register',[AuthController::class,'register']);
 Route::post('/registerProses',[AuthController::class,'registerProses']);
-
 Route::get('/login',[AuthController::class,'login']);
 Route::post('/loginProses',[AuthController::class,'loginProses']);
+
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -64,3 +67,32 @@ Route::get('/teacher/edit/{id}',[App\Http\Controllers\TeacherController::class, 
 Route::post('/teacher/store',[App\Http\Controllers\TeacherController::class, 'store'])->name('teacher/store');
 Route::post('/teacher/update/{id}',[App\Http\Controllers\TeacherController::class, 'update'])->name('teacher/update');
 Route::any('/teacher/delete/{id}',[App\Http\Controllers\TeacherController::class, 'destroy']);
+
+Route::get('/achievement/datatable',[App\Http\Controllers\AchievementController::class, 'datatable'])->name('achievement/datatable');
+Route::get('/achievement',[App\Http\Controllers\AchievementController::class, 'index']);
+Route::get('/achievement/create', [App\Http\Controllers\AchievementController::class, 'create'])->name('achievement/create');
+Route::get('/achievement/show/{id}',[App\Http\Controllers\AchievementController::class, 'show']);
+Route::get('/achievement/edit/{id}',[App\Http\Controllers\AchievementController::class, 'edit']);
+Route::post('/achievement/store',[App\Http\Controllers\AchievementController::class, 'store'])->name('achievement/store');
+Route::post('/achievement/update/{id}',[App\Http\Controllers\AchievementController::class, 'update'])->name('achievement/update');
+Route::any('/achievement/delete/{id}',[App\Http\Controllers\AchievementController::class, 'destroy']);
+
+Route::get('/extracurricular/datatable',[App\Http\Controllers\ExtracurricularController::class, 'datatable'])->name('extracurricular/datatable');
+Route::get('/extracurricular',[App\Http\Controllers\ExtracurricularController::class, 'index']);
+Route::get('/extracurricular/create', [App\Http\Controllers\ExtracurricularController::class, 'create'])->name('extracurricular/create');
+Route::get('/extracurricular/show/{id}',[App\Http\Controllers\ExtracurricularController::class, 'show']);
+Route::get('/extracurricular/edit/{id}',[App\Http\Controllers\ExtracurricularController::class, 'edit']);
+Route::post('/extracurricular/store',[App\Http\Controllers\ExtracurricularController::class, 'store'])->name('extracurricular/store');
+Route::post('/extracurricular/update/{id}',[App\Http\Controllers\ExtracurricularController::class, 'update'])->name('extracurricular/update');
+Route::any('/extracurricular/delete/{id}',[App\Http\Controllers\ExtracurricularController::class, 'destroy']);
+
+Route::get('/registration/datatable',[App\Http\Controllers\RegistrationController::class, 'datatable'])->name('registration/datatable');
+Route::get('/registration',[App\Http\Controllers\RegistrationController::class, 'index']);
+Route::get('/registration/create', [App\Http\Controllers\RegistrationController::class, 'create'])->name('registration/create');
+Route::get('/registration/show/{id}',[App\Http\Controllers\RegistrationController::class, 'show']);
+Route::get('/registration/edit/{id}',[App\Http\Controllers\RegistrationController::class, 'edit']);
+Route::post('/registration/store',[App\Http\Controllers\RegistrationController::class, 'store'])->name('registration/store');
+Route::post('/registration/update/{id}',[App\Http\Controllers\RegistrationController::class, 'update'])->name('registration/update');
+Route::any('/registration/delete/{id}',[App\Http\Controllers\RegistrationController::class, 'destroy']);
+Route::get('/registration/download/{id}', [App\Http\Controllers\RegistrationController::class, 'downloadApprovalLetter'])->name('registration.download');
+

@@ -59,7 +59,7 @@
                                         </tr>
                                         <tr>
                                             <td><b>Birthdate</b></td>
-                                            <td>{{ date('Y-m-d', strtotime($data->birthdate)) }}</td>
+                                            <td>{{ date('d-M-y', strtotime($data->birthdate)) }}</td>
                                         </tr>
                                         <tr>
                                             <td><b>Birthplace</b></td>
