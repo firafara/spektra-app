@@ -29,6 +29,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    @if (Auth::user()->role != "Student")
                                     <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
                                     <select name="user_id" id="user_id" class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
                                         <option value="">Choose Name</option>
@@ -39,7 +40,18 @@
                                         @endforeach
                                     </select>
                                     <span class="text-danger error-text user_id_error"></span>
-                                </div>
+                                    @else
+                                    <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
+                                    <select name="user_id" id="user_id" class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                                {{ $user->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger error-text user_id_error"></span>
+                                    @endif
+                                </div> 
                                   <div class="form-group">
                                     <label for="extracurricular_id"><b>Extracurricular</b><span class="text-danger">*</span></label>
                                     <select name="extracurricular_id" id="extracurricular_id" class="form-control form-control-sm col-md-12 {{ $errors->has('extracurricular_id') ? 'is-invalid' : '' }}">
@@ -71,6 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    @if (Auth::user()->role != "Student")
                                     <label><b>Status</b> <span class="text-danger">*</span></label>
                                     <select id="status" class="form-control form-control-sm" name="status">
                                         <option value="" disabled="true" selected="true">Choose</option>
@@ -79,6 +92,9 @@
                                         <option value="Rejected">Rejected</option>
                                     </select>
                                     <span class="text-danger error-text gender_error"></span>
+                                    @else
+                            
+                                    @endif
                                 </div>
                             </div>
                             </div>

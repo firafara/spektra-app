@@ -66,7 +66,8 @@
             <h1 class="page-header">Welcome to Spektra <b>{{ auth()->user()->name }}</b> Lets Check your Data First</h1>
             <div class="panel panel-inverse" data-sortable-id="table-basic-1">
                 <div class="panel-heading ui-sortable-handle">
-                    <h4 class="panel-title">Data From User <b>{{ auth()->user()->name }}</b></h4>
+                    <h4 class="panel-title">Your Data</b></h4>
+                    <a href="" class="btn btn-primary btn-icon btn-sm" title="Edit"></a>
 
                 </div>
                 <div class="panel-body">
@@ -145,36 +146,55 @@
                                         <tr>
                                             <td><b>Your Pending Status</b></td>
                                             <td>
-                                                @if (auth()->user()->role == 'Student' && auth()->user()->registration)
-                                                    You Have
-                                                    {{ auth()->user()->registration->where('status', 'Pending')->count() }}
-                                                    Pending Status
+                                                @php
+                                                    $pendingCount = auth()
+                                                        ->user()
+                                                        ->registration()
+                                                        ->where('status', 'Pending')
+                                                        ->count();
+                                                @endphp
+
+                                                @if ($pendingCount > 0)
+                                                    You Have {{ $pendingCount }} Pending Status
                                                 @else
-                                                    Not available
+                                                    You Have {{ $pendingCount }} Pending Status
                                                 @endif
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td><b>Your Approved Status</b></td>
                                             <td>
-                                                @if (auth()->user()->role == 'Student' && auth()->user()->registration)
-                                                    You Have
-                                                    {{ auth()->user()->registration->where('status', 'Approved')->count() }}
-                                                    Approved Status
+                                                @php
+                                                    $approvedCount = auth()
+                                                        ->user()
+                                                        ->registration()
+                                                        ->where('status', 'Approved')
+                                                        ->count();
+                                                @endphp
+
+                                                @if ($approvedCount > 0)
+                                                    You Have {{ $approvedCount }} Approved Status
                                                 @else
-                                                    Not available
+                                                    You Have {{ $approvedCount }} Approved Status
                                                 @endif
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><b>Your Rejected Status</b></td>
                                             <td>
-                                                @if (auth()->user()->role == 'Student' && auth()->user()->registration)
-                                                    You Have
-                                                    {{ auth()->user()->registration->where('status', 'Rejected')->count() }}
-                                                    Rejected Status
+                                                @php
+                                                    $rejectedCount = auth()
+                                                        ->user()
+                                                        ->registration()
+                                                        ->where('status', 'Rejected')
+                                                        ->count();
+                                                @endphp
+
+                                                @if ($rejectedCount > 0)
+                                                    You Have {{ $rejectedCount }} Rejected Status
                                                 @else
-                                                    Not available
+                                                    You Have {{ $rejectedCount }} Rejected Status
                                                 @endif
                                             </td>
                                         </tr>
