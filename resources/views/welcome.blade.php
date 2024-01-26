@@ -260,12 +260,10 @@
                         exciting prose here.</p>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-                            fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/11/Prestasi-November-1-scaled.jpg" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
@@ -281,12 +279,10 @@
                         of how this layout would work with some actual real-world content in place.</p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-                            fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/12/WhatsApp-Image-2023-12-11-at-21.19.38-Copy.jpeg" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
@@ -303,12 +299,10 @@
                         look like with some actual content. Your content.</p>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-                            fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2022/03/P1070648-scaled.jpg" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
