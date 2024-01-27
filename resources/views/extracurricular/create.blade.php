@@ -54,6 +54,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label><b>Picture</b></label>
+                                    <div>
+                                        <input type="file" id="picture" name="picture" value="{{ old('picture') }}">
+                                        <span class="text-danger error-text avatar_error"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>

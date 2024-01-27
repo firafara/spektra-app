@@ -147,7 +147,7 @@
     <header data-bs-theme="dark">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-success">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="img/pngaaa.com-72314.png" width="30" height="30" class="d-inline-block align-top"
                         alt="">
                     SPEKTRA - MAN 1 KOTA PADANG
@@ -182,7 +182,7 @@
                             <p class="opacity-75">Sistem Pendaftaran Ekstrakulikuler Bagi Siswa MAN 1 Kota Padang.
                                 Daftarkan diri anda dan mulailah mengembangkan skill melalui Ekstrakulikuler yang ada !
                             </p>
-                            <p><a class="btn btn-lg btn-success" href="#">Daftarkan akun</a></p>
+                            <p><a class="btn btn-lg btn-success" href="register">Daftarkan akun</a></p>
                         </div>
                     </div>
                 </div>
@@ -197,7 +197,7 @@
                             <h1>Ekstrakulikuler yang Beragam</h1>
                             <p>Membangun Potensi, Mengukir Prestasi. Berbagai Ekstrakulikuler yang disediakan oleh MAN 1
                                 Kota Padang.</p>
-                            <p><a class="btn btn-lg btn-success" href="#">Learn more</a></p>
+                            <p><a class="btn btn-lg btn-success" href="extraview">View</a></p>
                         </div>
                     </div>
                 </div>

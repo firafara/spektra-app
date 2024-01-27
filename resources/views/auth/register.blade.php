@@ -71,6 +71,9 @@
                         &copy; Kelompok 2 Spektra APP
                     </p>
                 </form>
+                <div class="text-center mt-3">
+                    <a href="{{ url('/') }}" class="btn btn-link">Back to Home</a>
+                </div>
             </div>
             <!-- end register-content -->
         </div>

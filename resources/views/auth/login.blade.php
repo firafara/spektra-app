@@ -7,7 +7,7 @@
     <div class="login login-with-news-feed">
         <!-- begin news-feed -->
         <div class="news-feed">
-            <div class="news-image" style="background-image: url(/assets/img/login-bg/login-bg-11.jpg)"></div>
+            <div class="news-image" style="background-image: url('https://man1kotapadang.sch.id/wp-content/uploads/2023/06/IMG_20230611_081242-scaled.jpg')"></div>
             <div class="news-caption">
                 <h4 class="caption-title"><b>Spektra</b> Admin App</h4>
                 <p>
@@ -58,9 +58,13 @@
                     <div class="alert alert-danger">{{ session('errorLogin') }}</div>
                 @endif
             </div>
+            <div class="text-center mt-3">
+                <a href="{{ url('/') }}" class="btn btn-link">Back to Home</a>
+            </div>
             <!-- end login-content -->
         </div>
         <!-- end right-container -->
+        
     </div>
     <!-- end login -->
 @endsection

@@ -56,6 +56,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label><b>Picture</b></label>
+                                    <div>
+                                        <input type="file" name="picture" />
+                                        <span class="text-danger error-text picture_error"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>

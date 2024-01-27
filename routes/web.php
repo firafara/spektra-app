@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/viewdetailextra/{extracurricular_id}',[App\Http\Controllers\ExtracurricularController::class, 'viewdetailextra'])->name('viewdetailextra');
+
+Route::get('/extraview',[App\Http\Controllers\ExtracurricularController::class, 'extraview']);
+
 Route::get('/register',[AuthController::class,'register']);
 Route::post('/registerProses',[AuthController::class,'registerProses']);
 Route::get('/login',[AuthController::class,'login']);

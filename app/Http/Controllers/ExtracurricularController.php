@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Extracurricular;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -16,6 +17,20 @@ class ExtracurricularController extends Controller
     public function index()
     {
         return view('extracurricular.index');
+    }
+
+    public function extraview()
+    {
+        $extracurricular = Extracurricular::all();
+        $user = User::all();
+        return view('extraview',['extracurricular'=>$extracurricular, 'user'=>$user]);
+    }
+
+    public function viewdetailextra($extracurricular_id){
+
+        $extracurricular = Extracurricular::find($extracurricular_id);
+        $user = User::all();
+        return view('viewdetailextra',['extracurricular'=>$extracurricular, 'user'=>$user]);
     }
 
     public function datatable(){
@@ -43,6 +58,10 @@ class ExtracurricularController extends Controller
             ->editColumn('description',function($data){
                 return str_ireplace("\r\n", "," , $data->description);
             })
+            ->editColumn('picture',function($data){
+                return str_ireplace("\r\n", "," , $data->picture);
+            })
+            
 
             ->rawColumns(['action'])
             ->make(true);
@@ -72,6 +91,14 @@ class ExtracurricularController extends Controller
 {
     $validator = Validator::make($request->all(), Extracurricular::$createRules, Extracurricular::$customMessage);
 
+    if ($request->hasFile('picture')) {
+        $picture = $request->file('picture');
+        $extension = $picture->getClientOriginalExtension();
+        $pictureName = $request->name . '.' . $extension;
+
+        $picture->move(public_path('upload/avatar/'), $pictureName);
+    }
+
     if (!$validator->passes()) {
         return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
     } else {
@@ -79,6 +106,7 @@ class ExtracurricularController extends Controller
             'user_id' => $request->user_id,
             'name' => $request->name,
             'description' => $request->description,
+            'picture'=> $pictureName
         ];
 
         // Pastikan nama tabel sesuai dengan tabel yang digunakan di database Anda
@@ -122,19 +150,47 @@ class ExtracurricularController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+{
+    // Validasi input
+    $validator = Validator::make($request->all(), Extracurricular::$editRules, Extracurricular::$customMessage);
 
-        $validator = Validator::make($request->all(), Extracurricular::$editRules, Extracurricular::$customMessage);
-        if(!$validator->passes()){
-            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
-        }else{
-            $data = Extracurricular::find($id);
-            $data->update($request->all());
-             if( $data->update($request->all()) ){
-               return response()->json(['status'=>1, 'url'=>'/extracurricular','message'=>'Extracurricular Updated Succesfully!']);
-           }
-        }
+    if ($validator->fails()) {
+        return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
     }
+
+    // Cek apakah ada file gambar yang diunggah
+    if ($request->hasFile('picture')) {
+        $picture = $request->file('picture');
+        $extension = $picture->getClientOriginalExtension();
+        $pictureName = $request->name . '.' . $extension;
+
+        // Pindahkan file gambar ke direktori yang diinginkan
+        $picture->move(public_path('upload/avatar/'), $pictureName);
+    }
+
+    // Update data ekstrakurikuler
+    $extracurricular = Extracurricular::find($id);
+
+    if (!$extracurricular) {
+        return response()->json(['status' => 0, 'message' => 'Extracurricular not found.']);
+    }
+
+    $extracurricular->user_id = $request->user_id;
+    $extracurricular->name = $request->name;
+    $extracurricular->description = $request->description;
+
+    // Update gambar hanya jika ada file gambar yang diunggah
+    if (isset($pictureName)) {
+        $extracurricular->picture = $pictureName;
+    }
+
+    // Simpan perubahan
+    $extracurricular->save();
+
+    return response()->json(['status' => 1, 'url' => '/extracurricular', 'message' => 'Extracurricular updated successfully.']);
+}
+
 
     /**
      * Remove the specified resource from storage.

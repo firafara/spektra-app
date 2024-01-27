@@ -16,12 +16,14 @@ class Extracurricular extends Model
         'user_id',
         'name',
         'description',
+        'picture',
     ];
 
     public static $createRules = [
         'user_id' => 'required',
         'name' => 'required',
         'description'=>'required',
+        'picture'=>'nullable',
 
     ];
 
@@ -29,6 +31,7 @@ class Extracurricular extends Model
         'user_id' => 'required',
         'name' => 'nullable',
         'description' => 'nullable',
+        'picture'=>'nullable',
 
     ];
 
