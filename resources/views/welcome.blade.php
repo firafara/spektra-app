@@ -197,7 +197,7 @@
                             <h1>Ekstrakulikuler yang Beragam</h1>
                             <p>Membangun Potensi, Mengukir Prestasi. Berbagai Ekstrakulikuler yang disediakan oleh MAN 1
                                 Kota Padang.</p>
-                            <p><a class="btn btn-lg btn-success" href="extraview">View</a></p>
+                            <p><a class="btn btn-lg btn-success" href="extraview">View More</a></p>
                         </div>
                     </div>
                 </div>
@@ -209,10 +209,10 @@
                     </svg>
                     <div class="container">
                         <div class="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
+                            <h1>Wadah Prestasi</h1>
                             <p>Wadah bagi para siswa untuk menggali bakat dan minat mereka melalui beragam kegiatan
                                 ekstrakurikuler yang menarik dan bermanfaat..</p>
-                            <p><a class="btn btn-lg btn-success" href="#">Browse gallery</a></p>
+                            <p><a class="btn btn-lg btn-success" href="{{url('https://man1kotapadang.sch.id/')}}">Visit MAN 1 Kota Padang</a></p>
                         </div>
                     </div>
                 </div>

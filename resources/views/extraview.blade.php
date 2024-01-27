@@ -149,20 +149,16 @@
 
 <main>
 
-  <section class="py-5 text-center container">
+  <section class="py-5 text-center ">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
+        <h1 class="fw-bold text-success">Daftar Ekstrakulikuler</h1>
+        <p class="lead text-body-secondary">Berikut merupakan list ekstrakulikuler Terbaik dan Populer yang telah disediakan oleh SPEKTRA MAN 1 Kota Padang.</p>
       </div>
     </div>
   </section>
 
-  <div class="album py-5 bg-body-tertiary">
+  <div class="album">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             @foreach ($extracurricular as $extracurriculars)
@@ -183,11 +179,11 @@
                             <p class="card-text">{{ Str::limit($extracurriculars->description, 100) }}</p>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="{{route('viewdetailextra',['extracurricular_id'=>$extracurriculars->extracurricular_id])}}" class="btn btn-sm btn-outline-secondary">View More</a>
-                                </div>
-                                
-                            </div>
+                              <div class="btn-group">
+                                  <a href="{{ route('viewdetailextra',['extracurricular_id'=>$extracurriculars->extracurricular_id]) }}" class="btn btn-sm btn-success">View More</a>
+                              </div>
+                          </div>
+                          
                         </div>
                     </div>
                 </div>
@@ -204,8 +200,9 @@
     <p class="float-end mb-1">
       <a href="#">Back to top</a>
     </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
+    <p>
+      <a href="/">Back to Home</a>
+    </p>
   </div>
 </footer>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
