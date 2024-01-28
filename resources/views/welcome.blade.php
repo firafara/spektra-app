@@ -256,13 +256,11 @@
                     <h2 class="featurette-heading fw-normal lh-1">Beragam Pilihan Ekstrakurikuler Dari klub Akademik
                         hingga seni dan olahraga, kami memiliki berbagai kegiatan yang sesuai dengan minat dan bakat
                         siswa.</h2>
-                    <p class="lead">Some great placeholder content for the first featurette here. Imagine some
-                        exciting prose here.</p>
                 </div>
                 <div class="col-md-5">
                     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                        <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
                         <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/11/Prestasi-November-1-scaled.jpg" width="100%" height="100%" />
                     </svg>
                 </div>
@@ -275,13 +273,11 @@
                     <h2 class="featurette-heading fw-normal lh-1">Kesempatan Berkembang Melalui Kegiatan
                         Ekstrakulikuler, siswa dapat memperluas jaringan, meningkatkan keterampilan, dan meningkatkan
                         kemandirian.</span></h2>
-                    <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea
-                        of how this layout would work with some actual real-world content in place.</p>
                 </div>
                 <div class="col-md-5 order-md-1">
                     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                        <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
                         <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/12/WhatsApp-Image-2023-12-11-at-21.19.38-Copy.jpeg" width="100%" height="100%" />
                     </svg>
                 </div>
@@ -294,14 +290,11 @@
                     <h2 class="featurette-heading fw-normal lh-1">Mentor Profesional di Setiap Ekstrakurikuler dan
                         didukung oleh mentor berpengalaman dalam bidangnya untuk membimbing dan menginspirasi
                         siswa.</span></h2>
-                    <p class="lead">And yes, this is the last block of representative placeholder content. Again, not
-                        really intended to be actually read, simply here to give you a better view of what this would
-                        look like with some actual content. Your content.</p>
                 </div>
                 <div class="col-md-5">
                     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                        <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
                         <image href="https://man1kotapadang.sch.id/wp-content/uploads/2022/03/P1070648-scaled.jpg" width="100%" height="100%" />
                     </svg>
                 </div>
