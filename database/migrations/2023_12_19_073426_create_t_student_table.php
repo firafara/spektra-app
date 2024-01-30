@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('t_student', function (Blueprint $table) {
             $table->bigIncrements('student_id')->unsigned();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id');
             $table->string('nis',25)->unique();
-            $table->string('name',55);
-            $table->unsignedBigInteger('class_id');
+            $table->foreignId('class_id');
             $table->string('gender',25);
             $table->string('phone_number',25);
             $table->date('birthdate')->nullable();

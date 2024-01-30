@@ -13,17 +13,44 @@ class Extracurricular extends Model
     protected $primaryKey = 'extracurricular_id';
 
     protected $fillable = [
-        'teacher_id',
+        'user_id',
         'name',
         'description',
+        'picture',
     ];
 
-    public function teacher()
+    public static $createRules = [
+        'user_id' => 'required',
+        'name' => 'required',
+        'description'=>'required',
+        'picture'=>'nullable',
+
+    ];
+
+    public static $editRules = [
+        'user_id' => 'required',
+        'name' => 'nullable',
+        'description' => 'nullable',
+        'picture'=>'nullable',
+
+    ];
+
+    public static $customMessage = [
+        'user_id.required'=> 'Teacher cannot be empty!',
+        'name.required'=> 'Name cannot be empty!',
+        'Description.unique'=> 'Description Date already exist!',
+
+    ];
+
+    public function user()
     {
-        return $this->belongsTo(Teacher::class, 'teacher_id', 'teacher_id');
+        return $this->belongsTo(User::class);
     }
-    public function registrations()
-    {
-        return $this->hasMany(Registration::class, 'extracurricular_id', 'extracurricular_id');
-    }
+
+    // public function registrations()
+    // {
+    //     return $this->hasMany(Registration::class, 'extracurricular_id', 'extracurricular_id');
+    // }
+
+
 }

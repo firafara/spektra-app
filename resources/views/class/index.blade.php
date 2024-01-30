@@ -88,7 +88,7 @@
                                                 </option>
                                                 <option value="IPA">IPA</option>
                                                 <option value="IPS">IPS</option>
-                                                <option value="Bahasa">Bahasa</option>
+                                                <option value="IPK">IPK</option>
                                             </select>
                                             <span class="text-danger error-text major_name_error"></span>
                                         </div>

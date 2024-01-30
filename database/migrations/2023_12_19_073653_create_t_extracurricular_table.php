@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('t_extracurricular', function (Blueprint $table) {
             $table->bigIncrements('extracurricular_id')->unsigned();
-            $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('name',55);
             $table->text('description')->nullable();
+            $table->string('picture',55)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-            $table->foreign('teacher_id')->references('teacher_id')->on('t_teacher')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
