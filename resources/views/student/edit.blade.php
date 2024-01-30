@@ -33,14 +33,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user_id"><b>Name</b><span class="text-danger">*</span></label>
-                                    <input type="hidden" id="user_id" name="user_id">
+                                    <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
                                     <select name="user_id" id="user_id"
                                         class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
                                         <option value="">Choose Name</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
-                                                {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                                {{ old('user_id', $data->user_id) == $user->id ? 'selected' : '' }}>
                                                 {{ $user->name }}
                                             </option>
                                         @endforeach
@@ -59,11 +58,11 @@
                                     <select name="class_id" id="class_id"
                                         class="form-control form-control-sm col-md-12 {{ $errors->has('class_id') ? 'is-invalid' : '' }}">
                                         <option value="">Choose Class</option>
-                                        @if ($class)
-                                            <option value="{{ $class->class_id }}" <?php echo $class->class_id == $class->class_id ? 'selected' : ''; ?>>
+                                        @foreach ($classes as $class)
+                                            <option value="{{ $class->class_id }}" <?php echo $data->class_id == $data->class_id ? 'selected' : ''; ?>>
                                                 {{ $class->class_details }}
                                             </option>
-                                        @endif
+                                        @endforeach
                                     </select>
                                     <span class="text-danger error-text class_id_error"></span>
                                 </div>
@@ -102,11 +101,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="birthplace"><b>Birthplace</b></label>
-                                            <input type="text" class="form-control form-control-sm" id="birthplace"
-                                                name="birthplace" value="{{ $data->birthplace }}" />
-                                        </div>
+                                        <label for="birthplace"><b>Birthplace</b></label>
+                                        <input type="birthplace" class="form-control form-control-sm m-b-5"
+                                            placeholder="Enter birthplace" name="birthplace"
+                                            value="{{ $data->birthplace }}" />
                                     </div>
                                 </div>
                                 <div class="row">

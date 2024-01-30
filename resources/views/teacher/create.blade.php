@@ -28,6 +28,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label><b>Nip</b> <span class="text-danger">*</span></label>
+                                    <input type="nip" class="form-control form-control-sm m-b-5" placeholder="Enter nip"
+                                        name="nip" />
+                                    <span class="text-danger error-text nip_error"></span>
+                                </div>
+                                <div class="form-group">
                                     <label for="user_id"><b>Name</b><span class="text-danger">*</span></label>
                                     <input type="hidden" id="user_id" name="user_id">
                                     <select name="user_id" id="user_id"
@@ -41,12 +47,6 @@
                                         @endforeach
                                     </select>
                                     <span class="text-danger error-text user_id_error"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label><b>Nip</b> <span class="text-danger">*</span></label>
-                                    <input type="nip" class="form-control form-control-sm m-b-5" placeholder="Enter nip"
-                                        name="nip" />
-                                    <span class="text-danger error-text nip_error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label><b>Gender</b> <span class="text-danger">*</span></label>

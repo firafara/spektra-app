@@ -56,7 +56,7 @@
                                         <tr>
                                             <td>
                                                 @if ($data->avatar == null)
-                                                    <img src="{{ asset('images/img-not-available.jpg') }}" alt=""
+                                                    <img src="{{ asset('upload/avatar/default.png') }}" alt=""
                                                         width="150px" height="150px">
                                                 @else
                                                     <img src="{{ asset('upload/avatar') . '/' . $data->avatar }}"

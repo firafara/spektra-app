@@ -22,11 +22,19 @@ class StudentController extends Controller
     }
 
     public function datatable(){
-        $data = DB::table('t_student')
+        $user = Auth::user(); // Mendapatkan informasi user yang sedang login
+
+        $query = DB::table('t_student')
             ->join('users', 't_student.user_id', '=', 'users.id')
             ->join('t_class', 't_student.class_id', '=', 't_class.class_id')
-            ->select('users.name', 't_student.nis', DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'), 't_student.phone_number', 't_student.student_id')
-            ->get();
+            ->select('users.name', 't_student.nis', DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'), 't_student.phone_number', 't_student.student_id');
+
+        // Jika rolenya adalah student, batasi query hanya untuk student yang sedang login
+        if (auth()->user()->role == 'Student') {
+            $query->where('t_student.user_id', $user->id);
+        }
+
+        $data = $query->get();
 
         return Datatables::of($data)
             ->addColumn('action', function($data){
@@ -46,6 +54,7 @@ class StudentController extends Controller
             ->rawColumns(['action', 'class_details'])
             ->make(true);
     }
+
 
     public function create(){
         $data = DB::table('t_student')
@@ -106,10 +115,13 @@ class StudentController extends Controller
         ->select('t_student.*', DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'),'users.name')
         ->where('student_id','=',$id)->first();
         // dd($data);
+        $class = DB::table('t_class')
+        ->select('t_class.class_id',DB::raw('CONCAT(t_class.grade, " ", t_class.major_name, " ", t_class.class_name) as class_details'))
+        ->get();
         $users = DB::table('users')->where('role','=','Student')->get();
 
 
-        return view('student/edit',['data'=>$data,'users'=>$users],);
+        return view('student/edit',['data'=>$data,'users'=>$users,'classes'=>$class],);
     }
 
     public function update(Request $request,$id){

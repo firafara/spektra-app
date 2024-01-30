@@ -58,7 +58,7 @@
                                     <select class="form-control form-control-sm" name="role">
                                         <option value="" disabled="true" selected="true">Choose Role</option>
                                         <option value="Student">Student</option>
-                                        <option value="Teacher">Teacher</option>
+                                        <option value="Admin">Teacher</option>
                                         <option value="Super Admin">Super Admin</option>
                                     </select>
                                     <span class="text-danger error-text role_error"></span>

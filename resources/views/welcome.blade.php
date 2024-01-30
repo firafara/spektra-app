@@ -29,17 +29,15 @@
         .spektra-description h2 {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #28a745;
-            /* Bootstrap success color */
+            color: #28a745; /* Bootstrap success color */
         }
 
         .spektra-description p {
             font-size: 1.25rem;
             line-height: 1.6;
-            color: #6c757d;
-            /* Bootstrap muted color */
+            color: #6c757d; /* Bootstrap muted color */
         }
-
+        
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -214,8 +212,7 @@
                             <h1>Wadah Prestasi</h1>
                             <p>Wadah bagi para siswa untuk menggali bakat dan minat mereka melalui beragam kegiatan
                                 ekstrakurikuler yang menarik dan bermanfaat..</p>
-                            <p><a class="btn btn-lg btn-success"
-                                    href="{{ url('https://man1kotapadang.sch.id/') }}">Visit MAN 1 Kota Padang</a></p>
+                            <p><a class="btn btn-lg btn-success" href="{{url('https://man1kotapadang.sch.id/')}}">Visit MAN 1 Kota Padang</a></p>
                         </div>
                     </div>
                 </div>
@@ -261,14 +258,10 @@
                         siswa.</h2>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-body-bg)" />
-                        <image
-                            href="https://man1kotapadang.sch.id/wp-content/uploads/2023/11/Prestasi-November-1-scaled.jpg"
-                            width="100%" height="100%" />
+                        <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
+                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/11/Prestasi-November-1-scaled.jpg" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
@@ -282,14 +275,10 @@
                         kemandirian.</span></h2>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-body-bg)" />
-                        <image
-                            href="https://man1kotapadang.sch.id/wp-content/uploads/2023/12/WhatsApp-Image-2023-12-11-at-21.19.38-Copy.jpeg"
-                            width="100%" height="100%" />
+                        <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
+                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/12/WhatsApp-Image-2023-12-11-at-21.19.38-Copy.jpeg" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
@@ -303,13 +292,10 @@
                         siswa.</span></h2>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                        width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
-                        aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-body-bg)" />
-                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2022/03/P1070648-scaled.jpg"
-                            width="100%" height="100%" />
+                        <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
+                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2022/03/P1070648-scaled.jpg" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>

@@ -73,7 +73,7 @@ class RegistrationController extends Controller
                 return str_ireplace("\r\n", "," , $data->extracurricular_id);
             })
             ->editColumn('registration_date',function($data){
-                return str_ireplace("\r\n", "," , $data->registration_date);
+                return str_ireplace("\r\n", "," , date('d M Y',strtotime($data->registration_date)));
             })
             ->editColumn('status',function($data){
                 return str_ireplace("\r\n", "," , $data->status);

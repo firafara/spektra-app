@@ -113,7 +113,7 @@
                                         </tr>
                                         <tr>
                                             <td><b>Birthdate</b></td>
-                                            <td>{{ date('d-M-y', strtotime(auth()->user()->student->birthdate ?? 'Not available')) }}
+                                            <td>{{ date('d M Y', strtotime(auth()->user()->student->birthdate ?? 'Not available')) }}
                                             </td>
                                         </tr>
                                         <tr>

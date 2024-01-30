@@ -28,7 +28,7 @@
                                             </option>
                                             <option value="IPA" <?php echo $data->major_name == 'IPA' ? 'selected' : ''; ?>>IPA</option>
                                             <option value="IPS" <?php echo $data->major_name == 'IPS' ? 'selected' : ''; ?>>IPS</option>
-                                            <option value="Bahasa" <?php echo $data->major_name == 'Bahasa' ? 'selected' : ''; ?>>Bahasa</option>
+                                            <option value="IPK" <?php echo $data->major_name == 'IPK' ? 'selected' : ''; ?>>IPK</option>
                                         </select>
                                         <span class="text-danger error-text major_name_error"></span>
                                     </div>

@@ -61,7 +61,7 @@ class ExtracurricularController extends Controller
             ->editColumn('picture',function($data){
                 return str_ireplace("\r\n", "," , $data->picture);
             })
-
+            
 
             ->rawColumns(['action'])
             ->make(true);

@@ -52,11 +52,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label><b>Password</b><span class="text-danger">*</span></label>
-                                    <input type="password"
-                                        class="form-control form-control-sm m-b-5"value="{{ $data->password }}"
-                                        name="password">
+                                    <input type="password" class="form-control form-control-sm m-b-5" name="password">
                                     <span class="text-danger error-text password_error"></span>
+                                    <small class="text-muted">Leave this field empty to keep the current password.</small>
                                 </div>
+
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -73,7 +73,7 @@
                                 <div class="form-group">
                                     <label><b>Avatar</b></label>
                                     <div>
-                                        <input type="file" value="{{ $data->avatar }}" name="avatar" />
+                                        <input type="file" name="avatar" />
                                         <span class="text-danger error-text avatar_error"></span>
                                     </div>
                                 </div>
@@ -102,16 +102,6 @@
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
-        });
-        $(function() {
-            $("input[name='is_approve']").click(function() {
-                if ($("#is_approve_1").is(":checked")) {
-                    $("#user_signature").removeAttr("disabled");
-                    // $("#other_txt").focus();
-                } else {
-                    $("#user_signature").attr("disabled", "disabled");
-                }
-            });
         });
     </script>
     <script>
