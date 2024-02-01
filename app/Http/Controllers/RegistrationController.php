@@ -55,16 +55,14 @@ class RegistrationController extends Controller
         }
         return Datatables::of($data)
             ->addColumn('action', function($data){
-                $url_view = url('registration/show/'.$data->registration_id);
                 $url_edit = url('registration/edit/'.$data->registration_id);
                 $url_delete = url('registration/delete/'.$data->registration_id);
                 $url_download = url('registration/download/' . $data->registration_id);
 
-                $view = "<a class='btn btn-primary btn-icon btn-sm' href='".$url_view."' title='View ".$data->name."'><i class='nav-icon fas fa-search'></i></a>&nbsp;";
                 $edit = "<a class='btn btn-warning btn-icon btn-sm' href='".$url_edit."' title='Edit'><i class='nav-icon fas fa-edit'></i></a>&nbsp;";
                 $delete = "<button class='btn btn-danger btn-icon btn-sm' data-url='".$url_delete."' onclick='deleteData(this)' title='Delete'><i class='nav-icon fas fa-trash'></i></button>";
                 $download = "<a class='btn btn-info btn-icon btn-sm' href='" . $url_download . "' title='Download Approval Letter'><i class='nav-icon fas fa-download'></i></a>&nbsp;";
-                return $view."".$edit."".$delete."".$download;
+                return $edit."".$delete."".$download;
             })
             ->editColumn('user_id',function($data){
                 return str_ireplace("\r\n", "," , $data->user_id);

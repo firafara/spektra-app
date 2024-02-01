@@ -79,6 +79,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Registration::class, 'user_id');
     }
-
+    public function hasRole($role)
+    {
+        return $this->role == $role;
+    }
 
 }
