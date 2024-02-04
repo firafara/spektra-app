@@ -8,7 +8,7 @@
         <!-- begin news-feed -->
         <div class="news-feed">
             <div class="news-image"
-                style="background-image: url('https://man1kotapadang.sch.id/wp-content/uploads/2023/08/WhatsApp-Image-2023-08-21-at-09.59.46-3.jpeg'); background-size: cover;">
+                style="background-image: url('{{ asset('img/asset2.jpeg') }}'); background-size: cover;">
             </div>
             <div class="news-caption">
                 <h4 class="caption-title"><b>Spektra</b>App</h4>

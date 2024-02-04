@@ -7,7 +7,7 @@
     <div class="login login-with-news-feed">
         <!-- begin news-feed -->
         <div class="news-feed">
-            <div class="news-image" style="background-image: url('https://man1kotapadang.sch.id/wp-content/uploads/2023/06/IMG_20230611_081242-scaled.jpg')"></div>
+            <div class="news-image" style="background-image: url('{{ asset('img/asset4.jpg') }}')"></div>
             <div class="news-caption">
                 <h4 class="caption-title"><b>Spektra</b> Admin App</h4>
                 <p>

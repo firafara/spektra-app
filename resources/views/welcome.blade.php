@@ -171,7 +171,7 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active"
-                    style="background-image: url('https://man1kotapadang.sch.id/wp-content/uploads/2023/07/WhatsApp-Image-2023-07-12-at-11.56.27-1-Copy.jpeg'); background-size: cover; ">
+                    style="background-image: url('{{ asset('img/asset1.jpeg') }}'); background-size: cover; ">
                     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="carousel-item"
-                    style="background-image: url('https://man1kotapadang.sch.id/wp-content/uploads/2023/08/WhatsApp-Image-2023-08-21-at-09.59.46-3.jpeg'); background-size: cover;">
+                    style="background-image: url('{{ asset('img/asset2.jpeg') }}'); background-size: cover;">
                     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
@@ -202,7 +202,7 @@
                     </div>
                 </div>
                 <div class="carousel-item"
-                    style="background-image: url('https://man1kotapadang.sch.id/wp-content/uploads/2023/07/WhatsApp-Image-2023-07-08-at-10.25.00.jpeg'); background-size: cover; background-position: center;">
+                    style="background-image: url('{{ asset('img/asset3.jpeg') }}'); background-size: cover; background-position: center;">
                     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
@@ -261,7 +261,7 @@
                     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
-                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/11/Prestasi-November-1-scaled.jpg" width="100%" height="100%" />
+                        <image href="{{ asset('img/asset6.jpg') }}" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
@@ -278,7 +278,7 @@
                     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
-                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2023/12/WhatsApp-Image-2023-12-11-at-21.19.38-Copy.jpeg" width="100%" height="100%" />
+                        <image href="{{ asset('img/asset5.jpeg') }}" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
@@ -295,7 +295,7 @@
                     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="var(--bs-body-bg)"/>
-                        <image href="https://man1kotapadang.sch.id/wp-content/uploads/2022/03/P1070648-scaled.jpg" width="100%" height="100%" />
+                        <image href="{{ asset('img/asset7.jpg') }}" width="100%" height="100%" />
                     </svg>
                 </div>
             </div>
