@@ -29,35 +29,42 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    @if (Auth::user()->role != "Student")
-                                    <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
-                                    <select name="user_id" id="user_id" class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
-                                        <option value="">Choose Name</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
-                                                {{ $user->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger error-text user_id_error"></span>
+                                    @if (Auth::user()->role != 'Student')
+                                        <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
+                                        <select name="user_id" id="user_id"
+                                            class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
+                                            <option value="">Choose Name</option>
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}"
+                                                    {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                                    {{ $user->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger error-text user_id_error"></span>
                                     @else
-                                    <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
-                                    <select name="user_id" id="user_id" class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
-                                                {{ $user->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger error-text user_id_error"></span>
+                                        <label for="user_id"><b>User Name</b><span class="text-danger">*</span></label>
+                                        <select name="user_id" id="user_id"
+                                            class="form-control form-control-sm col-md-12 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}"
+                                                    {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                                    {{ $user->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger error-text user_id_error"></span>
                                     @endif
-                                </div> 
-                                  <div class="form-group">
-                                    <label for="extracurricular_id"><b>Extracurricular</b><span class="text-danger">*</span></label>
-                                    <select name="extracurricular_id" id="extracurricular_id" class="form-control form-control-sm col-md-12 {{ $errors->has('extracurricular_id') ? 'is-invalid' : '' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="extracurricular_id"><b>Extracurricular</b><span
+                                            class="text-danger">*</span></label>
+                                    <select name="extracurricular_id" id="extracurricular_id"
+                                        class="form-control form-control-sm col-md-12 {{ $errors->has('extracurricular_id') ? 'is-invalid' : '' }}">
                                         <option value="">Choose Extracurricular</option>
                                         @foreach ($extracurricular as $extracurriculars)
-                                            <option value="{{ $extracurriculars->extracurricular_id }}" {{ old('extracurricular_id') == $extracurriculars->extracurricular_id ? 'selected' : '' }}>
+                                            <option value="{{ $extracurriculars->extracurricular_id }}"
+                                                {{ old('extracurricular_id') == $extracurriculars->extracurricular_id ? 'selected' : '' }}>
                                                 {{ $extracurriculars->name }}
                                             </option>
                                         @endforeach
@@ -65,11 +72,13 @@
                                     <span class="text-danger error-text user_id_error"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="registration_date"><b>Registration Date</b> <span class="text-danger">*</span></label>
+                                    <label for="registration_date"><b>Registration Date</b> <span
+                                            class="text-danger">*</span></label>
                                     <div class="col-sm-13">
                                         <div class="input-group date" id="registration_date-input">
-                                            <input type="text" class="form-control form-control-sm" id="registration_date"
-                                                name="registration_date" value="{{ old('registration_date') }}" />
+                                            <input type="text" class="form-control form-control-sm"
+                                                id="registration_date" name="registration_date"
+                                                value="{{ old('registration_date') }}" />
                                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                         </div>
                                         <span class="text-danger error-text registration_date_error"></span>
@@ -78,25 +87,25 @@
                                 <div class="form-group">
                                     <label><b>Approval Letter</b></label>
                                     <div>
-                                        <input type="file" id="approval_letter" name="approval_letter" value="{{ old('approval_letter') }}">
+                                        <input type="file" id="approval_letter" name="approval_letter" accept=".pdf"
+                                            value="{{ old('approval_letter') }}">
                                         <span class="text-danger error-text avatar_error"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    @if (Auth::user()->role != "Student")
-                                    <label><b>Status</b> <span class="text-danger">*</span></label>
-                                    <select id="status" class="form-control form-control-sm" name="status">
-                                        <option value="" disabled="true" selected="true">Choose</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Approved">Approved</option>
-                                        <option value="Rejected">Rejected</option>
-                                    </select>
-                                    <span class="text-danger error-text gender_error"></span>
+                                    @if (Auth::user()->role != 'Student')
+                                        <label><b>Status</b> <span class="text-danger">*</span></label>
+                                        <select id="status" class="form-control form-control-sm" name="status">
+                                            <option value="" disabled="true" selected="true">Choose</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Rejected">Rejected</option>
+                                        </select>
+                                        <span class="text-danger error-text gender_error"></span>
                                     @else
-                            
                                     @endif
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>
